@@ -1,8 +1,10 @@
 <template>
-  <div class="container">
-    <Search />
-    <FilterComponent :handleFilter="handleFilter" />
-    <div class="">
+  <div class="home">
+    <div class="controller">
+      <Search />
+      <FilterComponent :handleFilter="handleFilter" />
+    </div>
+    <div class="home__list">
       <Card v-for="(country, i) in countries" :country="country" :key="i" />
     </div>
   </div>
@@ -47,3 +49,5 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" src="./style.scss" scoped />

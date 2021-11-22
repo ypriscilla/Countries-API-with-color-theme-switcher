@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <div>Where in the world?</div>
+    <div class="title">Where in the world?</div>
     <themeSwitcher />
   </div>
 </template>

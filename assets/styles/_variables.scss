@@ -1,5 +1,13 @@
 /* COLOURS VARIABLES ($c-) */
+$c-darkmode-element: hsl(209, 23%, 22%);
+$c-darkmode-bg: hsl(207, 26%, 17%);
+$c-lightmode-text: hsl(200, 15%, 8%);
+$c-lightmode-input: hsl(0, 0%, 52%);
+$c-lightmode-bg: hsl(0, 0%, 98%);
+$c-white: hsl(0, 0%, 100%);
 
 /* FONTS ($f-) */
 $f-fontello: "fontello";
 $f-nunino: "Nunito Sans", arial, sans-serif;
+$f-nunino-medium: "Nunito Sans Medium", arial, sans-serif;
+$f-nunino-bold: "Nunito Sans Bold", arial, sans-serif;

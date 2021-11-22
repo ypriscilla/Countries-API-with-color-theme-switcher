@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "countries",
+    title: "Countries",
     htmlAttrs: {
       lang: "en",
     },
@@ -27,7 +27,12 @@ export default {
   buildModules: [],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ["@nuxtjs/axios"],
+  modules: ["@nuxtjs/axios", "@nuxtjs/style-resources"],
+
+  // Always imported in all CSS
+  styleResources: {
+    scss: ["./assets/styles/_variables.scss", "./assets/styles/_mixin.scss"],
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},

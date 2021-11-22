@@ -23,6 +23,7 @@ export default {
   methods: {
     setTheme() {
       this.$store.dispatch("setTheme");
+      localStorage.setItem("theme", this.$store.state.layout.theme);
     },
   },
   mounted() {},

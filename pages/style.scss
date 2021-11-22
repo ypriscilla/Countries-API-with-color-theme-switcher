@@ -1,0 +1,18 @@
+.home {
+  .controller {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+
+    @include mq-small {
+      flex-wrap: wrap;
+    }
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, auto));
+    grid-gap: 10px;
+  }
+}

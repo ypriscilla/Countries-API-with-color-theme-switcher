@@ -9,13 +9,17 @@ const layout = {
     },
   },
   mutations: {
-    SET_THEME(state) {
-      state.theme = state.theme == 1 ? 0 : 1;
+    SET_THEME(state, theme) {
+      if (!theme) {
+        state.theme = state.theme == 1 ? 0 : 1;
+      } else {
+        state.theme = theme;
+      }
     },
   },
   actions: {
-    setTheme: ({ commit }) => {
-      commit("SET_THEME");
+    setTheme: ({ commit }, theme) => {
+      commit("SET_THEME", theme);
     },
   },
 };

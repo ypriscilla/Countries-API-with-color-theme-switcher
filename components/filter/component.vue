@@ -1,12 +1,17 @@
 <template>
   <div class="filter">
-    <div class="filter__head">
+    <div class="filter__head" @click="dropdownSetting">
       <div v-if="filter">
-        {{ filter }}
+        {{ filter }} <span class="icon-angle-down"></span>
       </div>
       <div v-else>Filter by Region <span class="icon-angle-down"></span></div>
     </div>
-    <div class="filter__dropdown">
+    <div
+      class="filter__dropdown__backdrop"
+      v-if="isActive"
+      @click="dropdownSetting"
+    ></div>
+    <div class="filter__dropdown" :class="{ active: isActive }">
       <ul>
         <li
           v-for="(region, i) in regions"
@@ -28,12 +33,17 @@ export default {
     return {
       regions: ["Africa", "Americas", "Asia", "Europe", "Oceania"],
       filter: null,
+      isActive: false,
     };
   },
   methods: {
     selectFilter(region) {
       this.filter = region;
       this.handleFilter(region);
+      this.isActive = false;
+    },
+    dropdownSetting() {
+      this.isActive = !this.isActive;
     },
   },
 };

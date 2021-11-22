@@ -2,52 +2,62 @@
   <div class="error" v-if="errorMessage && !data">
     {{ errorMessage }}
   </div>
-  <div class="container" v-else-if="data">
-    <div class="back"></div>
-    <div class="country">
+  <div class="profile" v-else-if="data">
+    <div class="back">
+      <Button />
+    </div>
+    <div class="profile__content">
       <div class="images">
         <img :src="data.flags.png" />
       </div>
       <div class="details">
         <h1>{{ data.name }}</h1>
-        <div class="details__container__left">
-          <div><span>Native Name:</span>{{ data.nativeName }}</div>
-          <div><span>Population:</span>{{ data.population }}</div>
-          <div><span>Region:</span>{{ data.region }}</div>
-          <div><span>Sub Region:</span>{{ data.subregion }}</div>
-          <div><span>Capital:</span>{{ data.capital }}</div>
-        </div>
+        <div class="details__container">
+          <div class="details__container__left">
+            <div class="details__container__text">
+              <span>Native Name:</span>{{ data.nativeName }}
+            </div>
+            <div class="details__container__text">
+              <span>Population:</span>{{ data.population }}
+            </div>
+            <div><span>Region:</span>{{ data.region }}</div>
+            <div><span>Sub Region:</span>{{ data.subregion }}</div>
+            <div><span>Capital:</span>{{ data.capital }}</div>
+          </div>
 
-        <div class="details__container__right">
-          <div>
-            <span>Top Level Domain:</span>
-            {{ data.topLevelDomain.join(",") }}
-          </div>
-          <div>
-            <span>Currencies:</span>
-            {{
-              data.currencies
-                .map((val) => {
-                  return val.name;
-                })
-                .join(",")
-            }}
-          </div>
-          <div>
-            <span>Language:</span>
-            {{
-              data.languages
-                .map((val) => {
-                  return val.name;
-                })
-                .join(",")
-            }}
+          <div class="details__container__right">
+            <div class="details__container__text">
+              <span>Top Level Domain:</span>
+              {{ data.topLevelDomain && data.topLevelDomain.join(",") }}
+            </div>
+            <div class="details__container__text">
+              <span>Currencies:</span>
+              {{
+                data.currencies &&
+                data.currencies
+                  .map((val) => {
+                    return val.name;
+                  })
+                  .join(",")
+              }}
+            </div>
+            <div class="details__container__text">
+              <span>Language:</span>
+              {{
+                data.languages &&
+                data.languages
+                  .map((val) => {
+                    return val.name;
+                  })
+                  .join(",")
+              }}
+            </div>
           </div>
         </div>
-        <div class="details__footer">
+        <div class="details__footer" v-if="borders">
           <span>Border Countries:</span>
-          <div v-for="(border, i) in borders" :key="i">
-            {{ border.name }}
+          <div class="details__border">
+            <Button v-for="(border, i) in borders" :key="i" :country="border" />
           </div>
         </div>
       </div>
@@ -57,8 +67,14 @@
 
 <script>
 import countryAPI from "@/api/country";
+import Button from "@/components/button/component";
+
 export default {
+  name: "profile",
   layout: "default",
+  components: {
+    Button,
+  },
   data() {
     return {
       isLoading: false,
@@ -71,13 +87,16 @@ export default {
       let countryApi = new countryAPI($axios);
       let data = await countryApi.getCountryByCode(params.slug);
 
-      let borders = await countryApi.getCountryByCodes(
-        data.data.borders.join(",")
-      );
+      let borders;
+      if (data.data.borders) {
+        borders = await countryApi.getCountryByCodes(
+          data.data.borders.join(",")
+        );
+      }
 
       return {
         data: data.data,
-        borders: borders.data,
+        borders: borders ? borders.data : null,
       };
     } catch (e) {
       return {
@@ -87,3 +106,5 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" src="./style.scss" scoped />
