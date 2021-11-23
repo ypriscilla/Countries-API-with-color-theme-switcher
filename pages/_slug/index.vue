@@ -8,7 +8,7 @@
     </div>
     <div class="profile__content">
       <div class="images">
-        <img :src="data.flags.png" />
+        <img :src="data.flags.png" :alt="data.name" />
       </div>
       <div class="details">
         <h1>{{ data.name }}</h1>
