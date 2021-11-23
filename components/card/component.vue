@@ -2,7 +2,7 @@
   <div class="card">
     <NuxtLink :to="`/${country.alpha3Code}`" class="card__link">
       <div class="card__image">
-        <img :src="country.flags.png" />
+        <img :src="country.flags.png" :alt="country.name" />
       </div>
       <div class="card__details">
         <div class="card__details__name">{{ country.name }}</div>
