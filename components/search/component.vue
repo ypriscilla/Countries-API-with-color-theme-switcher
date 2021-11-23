@@ -1,6 +1,6 @@
 <template>
   <div class="search">
-    <input placeholder="Search a country" />
+    <input placeholder="Search a country" v-on:keyup.enter="handleEnter" />
     <span class="icon-search"></span>
   </div>
 </template>
@@ -8,10 +8,13 @@
 <script>
 export default {
   name: "search",
+  props: ["handleSearch"],
   components: {},
-  methods: {},
-  mounted() {},
-  beforeMount() {},
+  methods: {
+    handleEnter(e) {
+      this.handleSearch(e);
+    },
+  },
 };
 </script>
 

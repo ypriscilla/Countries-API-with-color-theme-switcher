@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="controller">
-      <Search />
+      <Search :handleSearch="handleSearch" />
       <FilterComponent :handleFilter="handleFilter" />
     </div>
     <div class="home__list">
@@ -38,6 +38,18 @@ export default {
       countryApi.getAllCountryByFilter(this.filter).then((res) => {
         this.countries = res.data;
       });
+    },
+    handleSearch(e) {
+      let countryApi = new countryAPI(this.$axios);
+      if (e.target.value) {
+        countryApi.getCountryByName(e.target.value).then((res) => {
+          this.countries = res.data;
+        });
+      } else {
+        countryApi.getAllCountry().then((res) => {
+          this.countries = res.data;
+        });
+      }
     },
   },
   async asyncData({ $axios }) {

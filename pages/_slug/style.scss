@@ -1,9 +1,12 @@
 .profile {
-  height: calc(100vh - 52px - 1rem);
+  height: calc(100vh - 88px - 3rem);
   min-height: 500px;
   .back {
-    width: 100px;
+    width: 7rem;
     margin-bottom: 3rem;
+    .button {
+      height: 2rem;
+    }
   }
   &__content {
     display: grid;

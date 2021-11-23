@@ -2,12 +2,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  padding: 2rem 5rem;
   background-color: var(--element);
   color: var(--text);
-  -webkit-box-shadow: -1px -3px 20px -3px rgb(0 0 0 / 25%);
+  -webkit-box-shadow: -1px 3px 0px -1px rgb(0 0 0 / 6%);
   .title {
     font-family: $f-nunino-bold;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
+  }
+
+  @include mq-small {
+    padding: 2rem;
   }
 }

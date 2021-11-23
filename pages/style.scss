@@ -13,6 +13,6 @@
   &__list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, auto));
-    grid-gap: 10px;
+    grid-gap: 3rem;
   }
 }
